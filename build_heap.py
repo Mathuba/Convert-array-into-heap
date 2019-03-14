@@ -7,8 +7,10 @@ class HeapBuilder:
         self._data = []
 
     def read_data(self):
-        n = int(input())
-        self._data = [int(s) for s in input().split()]
+        # n = int(input())
+        n = 5
+        # self._data = [int(s) for s in input().split()]
+        self._data = [1, 2, 3, 4, 5]
         assert n == len(self._data)
 
     def write_response(self):
