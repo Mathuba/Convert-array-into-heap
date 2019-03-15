@@ -7,10 +7,10 @@ class HeapBuilder:
         self._data = []
 
     def read_data(self):
-        # n = int(input())
-        n = 5
-        # self._data = [int(s) for s in input().split()]
-        self._data = [1, 2, 3, 4, 5]
+        n = int(input())
+        # n = 5
+        self._data = [int(s) for s in input().split()]
+        # self._data = [5, 4, 3, 2, 1]
         assert n == len(self._data)
 
     def write_response(self):
@@ -29,8 +29,16 @@ class HeapBuilder:
         for i in range(len(self._data)):
             for j in range(i + 1, len(self._data)):
                 if self._data[i] > self._data[j]:
-                    self._swaps.append((i, j))
-                    self._data[i], self._data[j] = self._data[j], self._data[i]
+                    # self._swaps.append((i, j))
+                    # self._data[i], self._data[j] = self._data[j], self._data[i]
+                    self.swap(i, j)
+
+    def build_heap(self):
+        pass
+
+    def swap(self, parent_index, child_index):
+        self._swaps.append((parent_index, child_index))
+        self._data[parent_index], self._data[child_index] = self._data[child_index], self._data[parent_index]
 
     def solve(self):
         self.read_data()
