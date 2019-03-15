@@ -8,15 +8,16 @@ class HeapBuilder:
 
     def read_data(self):
         n = int(input())
-        # n = 5
         self._data = [int(s) for s in input().split()]
-        # self._data = [5, 4, 3, 2, 1]
         assert n == len(self._data)
 
     def write_response(self):
         print(len(self._swaps))
         for swap in self._swaps:
             print(swap[0], swap[1])
+
+    def parent(self, index_i):
+        return (index_i - 1) // 2
 
     def generate_swaps(self):
         # The following naive implementation just sorts
