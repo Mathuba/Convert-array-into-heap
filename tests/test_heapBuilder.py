@@ -3,7 +3,7 @@ import pytest
 
 
 @pytest.fixture()
-def heap_builder():
+def heap_builder(scope='module'):
     """
 
     :return: HeapBuilder with empty array
@@ -48,3 +48,25 @@ def test_build_heap_on_sorted_list(heap_builder):
     heap_builder._data = [1, 2, 3, 4, 5]
     heap_builder.build_heap()
     assert heap_builder._swaps == []
+
+
+def test_parent_of_left_child(heap_builder):
+    heap_builder._data = [5, 4, 3, 2, 1]
+    left_child_parent = heap_builder.parent(1)
+    assert left_child_parent == 0
+
+
+def test_parent_of_right_child(heap_builder):
+    right_child_parent = heap_builder.parent(2)
+    assert right_child_parent == 0
+
+
+def test_parent_of_left_most_leaf(heap_builder):
+    left_most_parent_of_child = heap_builder.parent(3)
+    assert left_most_parent_of_child == 1
+
+
+def test_parent_of_right_most_leaf(heap_builder):
+    right_most_parent_of_child = heap_builder.parent(4)
+    assert right_most_parent_of_child == 1
+
