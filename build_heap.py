@@ -24,6 +24,9 @@ class HeapBuilder:
     def left_child(self, index_i):
         return 2 * index_i + 1
 
+    def right_child(self, index_i):
+        return 2 * index_i + 2
+
     def generate_swaps(self):
         # The following naive implementation just sorts
         # the given sequence using selection sort algorithm
