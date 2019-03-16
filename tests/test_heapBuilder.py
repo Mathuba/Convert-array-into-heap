@@ -99,7 +99,33 @@ def test_left_child_of_a_middle_node(heap_builder):
 
 def test_invalid_left_child(heap_builder):
     left_child = heap_builder.left_child(4)
-    node_in_heap = left_child <= heap_builder._size
+    node_in_heap = (left_child <= heap_builder._size)
+    assert node_in_heap is False
+
+
+def test_right_child_of_root(heap_builder):
+    right_child = heap_builder.right_child(0)
+    assert right_child == 2
+
+
+def test_right_child_of_uppermost_left_child_node(heap_builder):
+    right_child = heap_builder.right_child(1)
+    assert right_child == 4
+
+
+def test_right_child_of_uppermost_right_child_node(heap_builder):
+    right_child = heap_builder.right_child(2)
+    assert right_child == 6
+
+
+def test_right_child_of_a_middle_node(heap_builder):
+    right_child = heap_builder.right_child(3)
+    assert right_child == 8
+
+
+def test_invalid_left_child(heap_builder):
+    right_child = heap_builder.right_child(4)
+    node_in_heap = (right_child <= heap_builder._size)
     assert node_in_heap is False
 
 
