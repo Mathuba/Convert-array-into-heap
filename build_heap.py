@@ -27,6 +27,20 @@ class HeapBuilder:
     def right_child(self, index_i):
         return 2 * index_i + 2
 
+    def sift_down(self, index_i):
+        min_index = index_i
+        left_child_index = self.left_child(index_i)
+        if (left_child_index <= self._size) and (self._data[left_child_index] < self._data[min_index]):
+            min_index = left_child_index
+
+        right_child_index = self.right_child(index_i)
+        if (left_child_index <= self._size) and (self._data[right_child_index] < self._data[min_index]):
+            min_index = right_child_index
+
+        if index_i != min_index:
+            self.swap(index_i, min_index)
+            self.sift_down(min_index)
+
     def generate_swaps(self):
         # The following naive implementation just sorts
         # the given sequence using selection sort algorithm
