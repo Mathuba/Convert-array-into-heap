@@ -8,8 +8,10 @@ class HeapBuilder:
         self._size = 0
 
     def read_data(self):
-        n = int(input())
-        self._data = [int(s) for s in input().split()]
+        # n = int(input())
+        n = 5
+        # self._data = [int(s) for s in input().split()]
+        self._data = [1, 2, 3, 4, 5]
         assert n == len(self._data)
         self._size = n - 1
 
@@ -28,36 +30,25 @@ class HeapBuilder:
         return 2 * index_i + 2
 
     def sift_down(self, index_i):
+        self._size = len(self._data)
         min_index = index_i
+
         left_child_index = self.left_child(index_i)
-        if (left_child_index <= self._size) and (self._data[left_child_index] < self._data[min_index]):
+        if (left_child_index < self._size) and (self._data[left_child_index] < self._data[min_index]):
             min_index = left_child_index
 
         right_child_index = self.right_child(index_i)
-        if (left_child_index <= self._size) and (self._data[right_child_index] < self._data[min_index]):
-            min_index = right_child_index
+        if (left_child_index < self._size) and (self._data[right_child_index] < self._data[min_index]):
+             min_index = right_child_index
 
         if index_i != min_index:
             self.swap(index_i, min_index)
             self.sift_down(min_index)
 
-    def generate_swaps(self):
-        # The following naive implementation just sorts
-        # the given sequence using selection sort algorithm
-        # and saves the resulting sequence of swaps.
-        # This turns the given array into a heap,
-        # but in the worst case gives a quadratic number of swaps.
-        #
-        # TODO: replace by a more efficient implementation
-        for i in range(len(self._data)):
-            for j in range(i + 1, len(self._data)):
-                if self._data[i] > self._data[j]:
-                    # self._swaps.append((i, j))
-                    # self._data[i], self._data[j] = self._data[j], self._data[i]
-                    self.swap(i, j)
-
-    def build_heap(self):
-        pass
+    def build_heap(self, an_array):
+        size = len(an_array) - 1
+        for i in range((len(an_array) // 2), -1, -1):
+            self.sift_down(i)
 
     def swap(self, parent_index, child_index):
         self._swaps.append((parent_index, child_index))
@@ -65,7 +56,8 @@ class HeapBuilder:
 
     def solve(self):
         self.read_data()
-        self.generate_swaps()
+        # self.generate_swaps()
+        self.build_heap(self._data)
         self.write_response()
 
 
