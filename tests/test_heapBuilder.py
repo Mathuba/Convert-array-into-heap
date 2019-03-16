@@ -123,9 +123,54 @@ def test_right_child_of_a_middle_node(heap_builder):
     assert right_child == 8
 
 
-def test_invalid_left_child(heap_builder):
+def test_invalid_right_child(heap_builder):
     right_child = heap_builder.right_child(4)
     node_in_heap = (right_child <= heap_builder._size)
     assert node_in_heap is False
+
+
+def test_sift_down_largest_from_root(heap_builder):
+    heap_builder._data.clear()
+    heap_builder._data = [50, 30, 15, 19, 20, 10, 5, 2]
+    heap_builder.sift_down(0)
+    assert heap_builder._data == [30, 15, 19, 20, 10, 5, 2, 50]
+
+
+def test_sift_down_largest_from_uppermost_left_child_node(heap_builder):
+    heap_builder._data.clear()
+    heap_builder._data = [30, 50, 15, 19, 20, 10, 5, 2]
+    heap_builder.sift_down(1)
+    assert heap_builder._data == [30, 19, 15, 2, 20, 10, 5, 50]
+
+
+def test_sift_down_largest_from_uppermost_right_child_node(heap_builder):
+    heap_builder._data.clear()
+    heap_builder._data = [15, 30, 50, 19, 20, 10, 5, 2]
+    heap_builder.sift_down(2)
+    assert heap_builder._data == [15, 30, 5, 19, 20, 10, 50, 2]
+
+
+def test_sift_down_one_place_greater_than_left_child(heap_builder):
+    heap_builder._data.clear()
+    heap_builder._data = [50, 30, 15, 19, 20, 10, 5, 2]
+    heap_builder.sift_down(3)
+    assert heap_builder._data == [50, 30, 15, 2, 20, 10, 5, 19]
+
+
+def test_sift_down_lowest_from_root_node(heap_builder):
+    heap_builder._data.clear()
+    heap_builder._data = [1, 2, 3, 6, 9, 5, 10, 14]
+    heap_builder.sift_down(0)
+    assert heap_builder._data == [1, 2, 3, 6, 9, 5, 10, 14]
+
+
+def test_sift_down_lowest_from_upper_most_left_child_node(heap_builder):
+    heap_builder._data.clear()
+    heap_builder._data = [2, 1, 3, 6, 9, 5, 10, 14]
+    heap_builder.sift_down(1)
+    assert heap_builder._data == [2, 1, 3, 6, 9, 5, 10, 14]
+
+
+
 
 
